@@ -1,0 +1,71 @@
+<?php
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Route;
+
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
+
+Route::view('/', 'welcome');
+
+
+Route::middleware([
+
+    ])->group(function () {
+         Route::get('/dashboard', function () {
+           if (auth()->user()->is_admin == 1) {
+            return redirect()->route('Admindashboard');
+           }
+           elseif(auth()->user()->is_admin == 2) {
+            return redirect()->route('Doctordashboard');
+           }
+           else{
+            return redirect()->route('Patientdashboard');
+           }
+         })->name('dashboard');
+
+    });
+
+    Route::prefix('admin')->middleware('admin')->group(function(){
+        Route::get('/Admindashboard', function(){
+            return view('admin.index');
+        })->name('Admindashboard');
+
+
+
+     });
+
+     Route::prefix('patient')->middleware('patient')->group(function(){
+        Route::get('/dashboard', function(){
+               return view('patient.index');
+           })->name('Patientdashboard');
+
+
+
+    });
+
+    Route::prefix('doctor')->middleware('doctor')->group(function(){
+        Route::get('/dashboard', function(){
+               return view('doctor.index');
+           })->name('Doctordashboard');
+
+
+
+    });
+
+
+
+
+
+Route::view('profile', 'profile')
+    ->middleware(['auth'])
+    ->name('profile');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+require __DIR__.'/auth.php';
