@@ -12,6 +12,7 @@ class prescription extends Model
         'patient_id',
         'treatment_id',
         'medicine_id',
+        'quantity',
     ];
 
 

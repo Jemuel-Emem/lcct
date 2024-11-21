@@ -3,7 +3,7 @@
         Add Prescription
     </button>
 
-    <!-- Add Prescription Modal -->
+
     @if($addModal)
     <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
 
@@ -125,14 +125,18 @@
                     <tr class="hover:bg-gray-50">
                         <td class="py-3 px-4 border-b">{{ $prescription->patient->name }}</td>
                         <td class="py-3 px-4 border-b">{{ $prescription->treatment->name }}</td>
-                        <td class="py-3 px-4 border-b">{{ $prescription->medicine->name }}</td>
+                        <td class="py-3 px-4 border-b">
+                            <button wire:click="showMedicineQuantity({{ $prescription->medicine_id }}, {{ $prescription->patient_id }})" class="text-blue-500 ">
+                               View
+                            </button>
+                        </td>
                         <td class="py-3 px-4 border-b space-x-2">
-                            <button wire:click="edit({{ $prescription->id }})" class="px-3 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-600">
+                            <button wire:click="edit({{ $prescription->id }})" class="w-32 px-3 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-600">
                                 Edit
                             </button>
-                            <button wire:click="delete({{ $prescription->id }})" class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600">
+                            {{-- <button wire:click="delete({{ $prescription->id }})" class="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600">
                                 Delete
-                            </button>
+                            </button> --}}
                         </td>
                     </tr>
                 @empty
@@ -143,4 +147,42 @@
             </tbody>
         </table>
     </div>
+    @if($medicineModal)
+    <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div class="bg-white p-6 w-1/3 rounded-lg shadow-lg">
+
+            <div class="flex justify-between items-center border-b pb-4">
+                <h2 class="text-xl font-semibold text-gray-800">Medicine Details</h2>
+                <button wire:click="closeMedicineModal" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+            </div>
+
+
+            <div class="mt-4">
+                <div class="mb-4">
+                    <p class="text-gray-700 font-medium">Patient Name:</p>
+                    <p class="text-lg text-gray-900">{{ $patientName }}</p>
+                </div>
+
+                <div class="mb-4">
+                    <p class="text-gray-700 font-medium">Medicine:</p>
+                    <p class="text-lg text-gray-900">{{ $medicineName }}</p>
+                </div>
+
+                <div class="mb-4">
+                    <p class="text-gray-700 font-medium">Quantity:</p>
+                    <p class="text-lg text-gray-900">{{ $medicineQuantity }}</p>
+                </div>
+            </div>
+
+
+            <div class="mt-6 flex justify-end">
+                <button wire:click="closeMedicineModal" class="px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+@endif
+
+
 </div>

@@ -18,7 +18,40 @@ class Prescription extends Component
     public $prescriptions;
     public $medicineQuantity;
 
+    public $medicineModal = false;
+public $medicineName, $patientName;
 
+public function showMedicineQuantity($medicineId, $patientId)
+{
+    // Find the medicine and patient
+    $medicine = Medicine::find($medicineId);
+    $patient = Patient::find($patientId);
+
+    // Get the prescribed quantity for this patient and medicine
+    $prescription = pres::where('medicine_id', $medicineId)
+                                ->where('patient_id', $patientId)
+                                ->first();
+
+    // Set the modal data
+    if ($prescription) {
+        $this->medicineName = $medicine->name;
+        $this->patientName = $patient->name;
+        $this->medicineQuantity = $prescription->quantity;
+    } else {
+        $this->medicineName = $medicine->name;
+        $this->patientName = $patient->name;
+        $this->medicineQuantity = 0;  // No prescription found
+    }
+
+    // Show the modal
+    $this->medicineModal = true;
+}
+
+public function closeMedicineModal()
+{
+    // Close the modal
+    $this->medicineModal = false;
+}
     public function mount()
     {
         $this->patients = Patient::all();
@@ -36,47 +69,49 @@ class Prescription extends Component
 
     public function save()
     {
-        // Validate the inputs, including the medicine quantity
+
         $this->validate([
             'studentId' => 'required|exists:patients,student_number',
             'treatmentId' => 'required',
             'medicineId' => 'required',
-            'medicineQuantity' => 'required|integer|min:1', // Validate the quantity
+            'medicineQuantity' => 'required|integer|min:1',
         ]);
 
         $patient = Patient::where('student_number', $this->studentId)->first();
-        $medicine = Medicine::find($this->medicineId); // Get the selected medicine
+        $medicine = Medicine::find($this->medicineId);
 
-        // Check if the medicine has enough stock
+
         if ($medicine->quantity < $this->medicineQuantity) {
             session()->flash('error', 'Not enough medicine in stock.');
             return;
         }
 
-        // If updating, find the existing prescription
+
         if ($this->prescriptionId) {
             $prescription = pres::find($this->prescriptionId);
             $prescription->update([
                 'patient_id' => $patient->id,
                 'treatment_id' => $this->treatmentId,
                 'medicine_id' => $this->medicineId,
+                'quantity' => $this->medicineQuantity,
             ]);
 
-            // Update the medicine quantity
+
             $medicine->decrement('quantity', $this->medicineQuantity);
         } else {
-            // Create a new prescription
+
             pres::create([
                 'patient_id' => $patient->id,
                 'treatment_id' => $this->treatmentId,
                 'medicine_id' => $this->medicineId,
+                'quantity' => $this->medicineQuantity,
             ]);
 
-            // Decrease the medicine quantity
+
             $medicine->decrement('quantity', $this->medicineQuantity);
         }
 
-        // Reset the form and close the modal
+
         $this->resetForm();
     }
 
@@ -101,8 +136,8 @@ class Prescription extends Component
     public function delete($id)
     {
         $prescription = pres::find($id);
-        $medicine = $prescription->medicine;
-        $medicine->increment('quantity', $prescription->medicine_quantity);
+        // $medicine = $prescription->medicine;
+        // $medicine->increment('quantity', $prescription->medicine_quantity);
 
         $prescription->delete();
 
