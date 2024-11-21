@@ -38,6 +38,22 @@ Route::middleware([
             return view('admin.index');
         })->name('Admindashboard');
 
+        Route::get('/admin.add-patient', function(){
+            return view('admin.add-patient');
+        })->name('admin.add-patient');
+
+        Route::get('/admin.add-treatment', function(){
+            return view('admin.add-treatment');
+        })->name('admin.add-treatment');
+
+        Route::get('/admin.add-medicine', function(){
+            return view('admin.add-medicine');
+        })->name('admin.add-medicine');
+
+        Route::get('/admin.prescription', function(){
+            return view('admin.prescription');
+        })->name('admin.prescription');
+
 
 
      });

@@ -96,15 +96,18 @@
 
                     <ul class="absolute left-0 z-10 hidden w-full mt-2 bg-white rounded-lg shadow-lg dark:bg-gray-800" style="display: none;">
                         <li>
-                            <a href="/add-patient"
+                            <a href="{{ route('admin.add-patient') }}"
                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
                                Add Patient
                             </a>
                         </li>
+
+
+
                         <li>
-                            <a href="/new-prescription"
+                            <a href="{{ route('admin.prescription') }}"
                                class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                               New Prescription
+                               Prescription
                             </a>
                         </li>
                         <li>
@@ -117,7 +120,14 @@
                 </li>
 
                 <li>
-                    <a href=""   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                    <a href="{{ route('admin.add-treatment') }}"   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="ri-capsule-fill"></i>
+                       <span class="flex-1 ms-3 whitespace-nowrap">Add Treatments</span>
+
+                    </a>
+                 </li>
+                <li>
+                    <a href="{{ route('admin.add-medicine') }}"   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="ri-capsule-fill"></i>
                        <span class="flex-1 ms-3 whitespace-nowrap">Add Medicines</span>
 
