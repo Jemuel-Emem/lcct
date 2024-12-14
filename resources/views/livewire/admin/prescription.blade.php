@@ -114,6 +114,7 @@
         <table class="min-w-full bg-white border border-gray-300 rounded-md shadow-md">
             <thead class="bg-gray-200">
                 <tr class="text-left text-sm font-medium text-gray-700">
+                    <th class="py-3 px-4 border-b">Student ID</th>
                     <th class="py-3 px-4 border-b">Patient Name</th>
                     <th class="py-3 px-4 border-b">Treatment</th>
                     <th class="py-3 px-4 border-b">Medicine</th>
@@ -123,6 +124,7 @@
             <tbody>
                 @forelse($prescriptions as $prescription)
                     <tr class="hover:bg-gray-50">
+                        <td class="py-3 px-4 border-b">{{ $prescription->patient->student_number }}</td>
                         <td class="py-3 px-4 border-b">{{ $prescription->patient->name }}</td>
                         <td class="py-3 px-4 border-b">{{ $prescription->treatment->name }}</td>
                         <td class="py-3 px-4 border-b">

@@ -72,72 +72,41 @@
                         <span class="ms-3">Dashboard</span>
                     </a>
                 </li> --}}
+                <li>
+                    <a href="{{ route('staff.patient') }}"   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="ri-user-star-fill"></i>
+                       <span class="flex-1 ms-3 whitespace-nowrap">Patients</span>
+
+                    </a>
+                 </li>
 
                  <li>
-                    <a href=""   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class="ri-dashboard-fill"></i>
-                       <span class="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
+                    <a href="{{ route('staff.add-student') }}"   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="ri-user-star-fill"></i>
+                       <span class="flex-1 ms-3 whitespace-nowrap">Add Student </span>
 
                     </a>
                  </li>
-
-                 {{-- <li class="relative">
-                    <!-- Dropdown Toggle Button -->
-                    <button
-                        onclick="toggleDropdown(this)"
-                        class="flex items-center w-full p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <i class="ri-group-3-fill"></i>
-                        <span class="flex-1 ms-3 whitespace-nowrap">Patients</span>
-                        <svg class="w-4 h-4 ml-2 transform transition-transform" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                    </button>
-
-
-                    <ul class="absolute left-0 z-10 hidden w-full mt-2 bg-white rounded-lg shadow-lg dark:bg-gray-800" style="display: none;">
-                        <li>
-                            <a href="{{ route('admin.add-patient') }}"
-                               class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                               Add Patient
-                            </a>
-                        </li>
-
-
-
-                        <li>
-                            <a href="{{ route('admin.prescription') }}"
-                               class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                               Prescription
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/patient-history"
-                               class="block px-4 py-2 text-gray-700 hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700">
-                               Patient History
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
 
                 <li>
-                    <a href="{{ route('admin.user') }}"   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class="ri-group-fill"></i>
-                       <span class="flex-1 ms-3 whitespace-nowrap">User</span>
+                    <a href="{{ route('staff.treatments') }}"   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                        <i class="ri-capsule-fill"></i>
+                       <span class="flex-1 ms-3 whitespace-nowrap">Treatments</span>
 
                     </a>
                  </li>
-                {{-- <li>
-                    <a href="{{ route('admin.add-medicine') }}"   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                <li>
+                    <a href="{{ route('staff.medicine') }}"   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="ri-capsule-fill"></i>
-                       <span class="flex-1 ms-3 whitespace-nowrap">Add Medicines</span>
+                       <span class="flex-1 ms-3 whitespace-nowrap">Medicines</span>
 
                     </a>
-                 </li> --}}
+                 </li>
 
                  <li>
                     <a href=""   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="ri-nurse-fill"></i>
-                       <span class="flex-1 ms-3 whitespace-nowrap">Patient History</span>
+                       <span class="flex-1 ms-3 whitespace-nowrap">Medical Certificate</span>
 
                     </a>
                  </li>
@@ -150,13 +119,7 @@
                     </a>
                  </li>
 
-                 {{-- <li>
-                    <a href=""   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                        <i class="ri-user-star-fill"></i>
-                       <span class="flex-1 ms-3 whitespace-nowrap">User</span>
 
-                    </a>
-                 </li> --}}
                 <script>
                     function toggleDropdown(button) {
                         const dropdown = button.nextElementSibling;

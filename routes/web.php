@@ -26,6 +26,9 @@ Route::middleware([
            elseif(auth()->user()->is_admin == 2) {
             return redirect()->route('Doctordashboard');
            }
+           elseif(auth()->user()->is_admin == 3) {
+            return redirect()->route('Staffdashboard');
+           }
            else{
             return redirect()->route('Patientdashboard');
            }
@@ -54,6 +57,10 @@ Route::middleware([
             return view('admin.prescription');
         })->name('admin.prescription');
 
+        Route::get('/admin.user', function(){
+            return view('admin.user');
+        })->name('admin.user');
+
 
 
      });
@@ -72,6 +79,31 @@ Route::middleware([
                return view('doctor.index');
            })->name('Doctordashboard');
 
+
+
+    });
+
+    Route::prefix('staff')->middleware('staff')->group(function(){
+        Route::get('/dashboard', function(){
+               return view('staff.index');
+           })->name('Staffdashboard');
+
+           Route::get('/staff.medicine', function(){
+            return view('staff.medecine');
+        })->name('staff.medicine');
+
+        Route::get('/staff.treatments', function(){
+            return view('staff.treatment');
+        })->name('staff.treatments');
+
+        Route::get('/staff.patient', function(){
+            return view('staff.patient');
+        })->name('staff.patient');
+
+
+        Route::get('/staff.add-student', function(){
+            return view('staff.add-student');
+        })->name('staff.add-student');
 
 
     });
