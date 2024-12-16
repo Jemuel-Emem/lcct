@@ -61,6 +61,10 @@ Route::middleware([
             return view('admin.user');
         })->name('admin.user');
 
+        Route::get('/admin.student', function(){
+            return view('admin.students');
+        })->name('admin.student');
+
 
 
      });

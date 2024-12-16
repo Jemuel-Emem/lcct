@@ -1,7 +1,12 @@
 <div>
+
     <div x-data="{ showModal: @entangle('editModal') }" class="mb-6">
         <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" @click="showModal = true">
             Add User
+        </button>
+
+        <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" >
+           <a href="{{ route('admin.student') }}"> Add Patients</a>
         </button>
 
         <div
