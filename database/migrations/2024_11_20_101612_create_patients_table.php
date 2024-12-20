@@ -16,7 +16,9 @@ return new class extends Migration
             $table->text('treatment_id');
             $table->string('student_number');
             $table->date('date');
-            $table->text('diganose');
+            $table->text('diagnose');
+            $table->time('time_in');
+            $table->time('time_out')->nullable();
 
             $table->timestamps();
         });

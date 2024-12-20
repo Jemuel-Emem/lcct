@@ -65,13 +65,13 @@
                           </div>
                      </div>
                 </a>
-                {{-- <li>
-                    <a href="Admindashboard"
+                <li>
+                    <a href="Doctordashboard"
                         class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="ri-dashboard-fill"></i>
                         <span class="ms-3">Dashboard</span>
                     </a>
-                </li> --}}
+                </li>
 
                  <li>
                     <a href=""   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
@@ -84,7 +84,7 @@
                  <li>
                     <a href=""   class="flex items-center p-2 text-white hover:text-black rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                         <i class="ri-folder-history-fill"></i>
-                       <span class="flex-1 ms-3 whitespace-nowrap">Dentist Record</span>
+                       <span class="flex-1 ms-3 whitespace-nowrap">Add Treatment</span>
 
                     </a>
                  </li>

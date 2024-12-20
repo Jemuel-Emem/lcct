@@ -11,10 +11,11 @@ class patient extends Model
 
     protected $fillable = [
         'student_number',
+        'treatment_id',
         'name',
         'grade_section',
         'date',
-        'complain',
+        'diagnose',
         'time_in',
         'time_out',
     ];
@@ -23,4 +24,12 @@ class patient extends Model
 {
     return $this->hasMany(Prescription::class);
 }
+
+
+public function user()
+{
+    return $this->belongsTo(User::class, 'student_number', 'student_number');
+}
+
+
 }

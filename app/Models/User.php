@@ -18,15 +18,25 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'student_number',
         'name',
         'email',
         'password',
-        'is_admin',
         'year',
         'course',
+        'grade_section',
         'section',
-        'student_number',
+        'sex',
+        'number',
+        'guardian',
+        'guardian_number',
+        'is_admin',
     ];
+// In the Patient model
+public function patients()
+{
+    return $this->hasMany(Patient::class, 'student_number');  // Ensure 'student_id' is the correct foreign key
+}
 
     /**
      * The attributes that should be hidden for serialization.

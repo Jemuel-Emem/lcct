@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Hash;
 class Students extends Component
 {
     public $userId, $name, $email, $password, $year, $course, $section, $student_number;
-    public $editModal = false; // Add this property to control modal visibility
+    public $sex, $number, $grade_section, $guardian, $guardian_number; // New fields
+    public $editModal = false;
+
     public function resetForm()
     {
         $this->userId = null;
@@ -20,6 +22,11 @@ class Students extends Component
         $this->course = '';
         $this->section = '';
         $this->student_number = '';
+        $this->sex = '';
+        $this->number = '';
+        $this->grade_section = '';
+        $this->guardian = '';
+        $this->guardian_number = '';
         $this->resetValidation();
         $this->resetErrorBag();
     }
@@ -34,9 +41,14 @@ class Students extends Component
         $this->year = $user->year;
         $this->course = $user->course;
         $this->section = $user->section;
+        $this->sex = $user->sex;
+        $this->number = $user->number;
+        $this->grade_section = $user->grade_section;
+        $this->guardian = $user->guardian;
+        $this->guardian_number = $user->guardian_number;
 
         $this->password = '';
-        $this->editModal = true; // Show the modal after data is loaded
+        $this->editModal = true;
     }
 
     public function save()
@@ -47,18 +59,22 @@ class Students extends Component
             'password' => 'nullable|min:6',
             'year' => 'nullable|string',
             'course' => 'nullable|string',
-            'section' => 'nullable|string',
+            'grade_section' => 'nullable|string',
             'student_number' => 'nullable|string',
+            'sex' => 'nullable|string',
+            'number' => 'nullable|string',
+            'grade_section' => 'nullable|string',
+            'guardian' => 'nullable|string',
+            'guardian_number' => 'nullable|string',
         ]);
 
         if (!empty($this->password)) {
             $data['password'] = Hash::make($this->password);
         } else {
-
             unset($data['password']);
         }
 
-        $data['is_admin'] = 0; // Default is_admin as 0
+        $data['is_admin'] = 0;
 
         User::updateOrCreate(
             ['id' => $this->userId],
@@ -66,13 +82,9 @@ class Students extends Component
         );
 
         session()->flash('message', $this->userId ? 'Student updated successfully!' : 'Student added successfully!');
-
-        $this->editModal = false; // Hide the modal after saving
+        $this->editModal = false;
         $this->resetForm();
     }
-
-
-
 
     public function delete($id)
     {

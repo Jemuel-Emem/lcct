@@ -15,9 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('student_number')->nullable();
             $table->string('name');
+
+            $table->string('sex')->nullable();
+            $table->string('number')->nullable();
             $table->string('year')->nullable();
             $table->string('course')->nullable();
-            $table->string('section')->nullable();
+            $table->string('grade_section')->nullable();
+            $table->string('guardian')->nullable();
+            $table->string('guardian_number')->nullable();
+
+
+
             $table->string('is_admin')->default(0);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

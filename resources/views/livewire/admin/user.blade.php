@@ -50,8 +50,9 @@
                             <label for="role" class="block text-sm font-medium">Role</label>
                             <select id="role" wire:model="is_admin" class="w-full p-2 border rounded-md">
                                 <option value="">Select Role</option>
-                                <option value="0">Patient</option>
+                                {{-- <option value="0">Patient</option> --}}
                                 <option value="2">Doctor</option>
+                                <option value="2">Nurse</option>
                                 <option value="3">Staff</option>
                             </select>
                             @error('is_admin') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
@@ -97,9 +98,12 @@
                                     : ($user->is_admin == 0
                                         ? 'Patient'
                                         : ($user->is_admin == 2
-                                            ? 'Doctor'
-                                            : 'Staff'))
+                                            ? 'Doctor/Nurse'
+                                            : ($user->is_admin == 3
+                                                ? 'Staff'
+                                                : 'Unknown')))
                             }}
+
                         </td>
                         <td class="py-3 px-4 border-b space-x-2">
                             <button wire:click="edit({{ $user->id }})" class="px-3 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition">
