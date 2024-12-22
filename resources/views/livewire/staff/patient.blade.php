@@ -133,7 +133,7 @@
                             {{ $patient->user ? $patient->user->grade_section : 'N/A' }}  <!-- Ensure grade_section is available -->
                         </td>
                         <td class="py-3 px-4 border-b">{{ \Carbon\Carbon::parse($patient->date)->format('M d, Y') }}</td>
-                        <td class="py-3 px-4 border-b">{{ $patient->complain ?? 'No complain' }}</td>
+                        <td class="py-3 px-4 border-b">{{ $patient->diagnose ?? 'No complain' }}</td>
                         <td class="py-3 px-4 border-b">
                             {{ $patient->time_in ? \Carbon\Carbon::createFromFormat('H:i:s', $patient->time_in)->setTimezone('Asia/Manila')->format('h:i A') : '-' }}
                         </td>

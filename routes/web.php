@@ -109,6 +109,10 @@ Route::middleware([
             return view('staff.add-student');
         })->name('staff.add-student');
 
+        Route::get('/staff.prescriptions', function(){
+            return view('staff.prescriptions');
+        })->name('staff.prescriptions');
+
 
     });
 
