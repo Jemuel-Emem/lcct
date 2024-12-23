@@ -113,6 +113,14 @@ Route::middleware([
             return view('staff.prescriptions');
         })->name('staff.prescriptions');
 
+        Route::get('/staff.medical', function(){
+            return view('staff.medical');
+        })->name('staff.medical');
+
+        Route::get('/staff.dental', function(){
+            return view('staff.dental');
+        })->name('staff.dental');
+
 
     });
 
