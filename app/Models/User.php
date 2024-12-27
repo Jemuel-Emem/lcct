@@ -23,6 +23,9 @@ class User extends Authenticatable
         'email',
         'password',
         'year',
+        'age',
+        'civil_status',
+        'address',
         'course',
         'grade_section',
         'section',
@@ -32,10 +35,10 @@ class User extends Authenticatable
         'guardian_number',
         'is_admin',
     ];
-// In the Patient model
+
 public function patients()
 {
-    return $this->hasMany(Patient::class, 'student_number');  // Ensure 'student_id' is the correct foreign key
+    return $this->hasMany(Patient::class, 'student_number');
 }
 
     /**

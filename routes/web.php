@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\CertificateController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -121,12 +122,17 @@ Route::middleware([
             return view('staff.dental');
         })->name('staff.dental');
 
+        Route::get('/staff.certificate', function(){
+            return view('staff.certificate');
+        })->name('staff.certificate');
+
 
     });
 
 
 
 
+Route::get('/certificate/download/{id}', [CertificateController::class, 'download'])->name('certificate.download');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
