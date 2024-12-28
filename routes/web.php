@@ -126,6 +126,10 @@ Route::middleware([
             return view('staff.certificate');
         })->name('staff.certificate');
 
+        Route::get('/staff.attendance', function(){
+            return view('staff.attendance');
+        })->name('staff.attendance');
+
 
     });
 

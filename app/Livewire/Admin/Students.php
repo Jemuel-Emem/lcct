@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class Students extends Component
 {
     public $userId, $name, $email, $password, $year, $course, $section, $student_number;
-    public $sex, $number, $grade_section, $guardian, $guardian_number; // New fields
+    public $sex, $number, $grade_section, $guardian, $guardian_number , $age, $address, $civil_status;
     public $editModal = false;
 
     public function resetForm()
@@ -18,6 +18,9 @@ class Students extends Component
         $this->name = '';
         $this->email = '';
         $this->password = '';
+        $this->age = '';
+        $this->address = '';
+        $this->civil_status = '';
         $this->year = '';
         $this->course = '';
         $this->section = '';
@@ -37,6 +40,9 @@ class Students extends Component
         $this->userId = $user->id;
         $this->student_number = $user->student_number;
         $this->name = $user->name;
+        $this->age = $user->age;
+        $this->address = $user->address;
+        $this->civil_status = $user->civil_status;
         $this->email = $user->email;
         $this->year = $user->year;
         $this->course = $user->course;
@@ -58,6 +64,9 @@ class Students extends Component
             'email' => 'required|email|unique:users,email,' . $this->userId,
             'password' => 'nullable|min:6',
             'year' => 'nullable|string',
+            'age' => 'nullable|string',
+            'address' => 'nullable|string',
+            'civil_status' => 'nullable|string',
             'course' => 'nullable|string',
             'grade_section' => 'nullable|string',
             'student_number' => 'nullable|string',

@@ -5,7 +5,7 @@
             <a href="{{ route('admin.user') }}">Back</a>
         </button>
         <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" @click="showModal = true">
-            Add Patients
+            Add Student
         </button>
         <div
         x-show="showModal"
@@ -39,6 +39,23 @@
                         @error('name') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
                     </div>
 
+                    <div>
+                        <label for="age" class="block text-sm font-medium">Age</label>
+                        <input type="text" id="age" wire:model="age" class="w-full p-2 border rounded-md" />
+                        @error('age') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div>
+                        <label for="address" class="block text-sm font-medium">Address</label>
+                        <input type="text" id="address" wire:model="address" class="w-full p-2 border rounded-md" />
+                        @error('address') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                    </div>
+
+                    <div>
+                        <label for="civil_status" class="block text-sm font-medium">Civil Status</label>
+                        <input type="text" id="civil_status" wire:model="civil_status" class="w-full p-2 border rounded-md" />
+                        @error('civil_status') <span class="text-red-600 text-sm">{{ $message }}</span> @enderror
+                    </div>
                     <div>
                         <label for="email" class="block text-sm font-medium">Email</label>
                         <input type="email" id="email" wire:model="email" class="w-full p-2 border rounded-md" />
@@ -114,6 +131,9 @@
             <tr class="text-left text-sm font-medium text-gray-700">
                 <th class="py-3 px-4 border-b">Student Number</th>
                 <th class="py-3 px-4 border-b">Name</th>
+                <th class="py-3 px-4 border-b">Age</th>
+                <th class="py-3 px-4 border-b">Address</th>
+                <th class="py-3 px-4 border-b">Civil Status</th>
                 <th class="py-3 px-4 border-b">Email</th>
                 <th class="py-3 px-4 border-b">Year</th>
                 <th class="py-3 px-4 border-b">Section</th>
@@ -130,6 +150,9 @@
                 <tr class="hover:bg-gray-50">
                     <td class="py-3 px-4 border-b">{{ $user->student_number }}</td>
                     <td class="py-3 px-4 border-b">{{ $user->name }}</td>
+                    <td class="py-3 px-4 border-b">{{ $user->age }}</td>
+                    <td class="py-3 px-4 border-b">{{ $user->address }}</td>
+                    <td class="py-3 px-4 border-b">{{ $user->civil_status }}</td>
                     <td class="py-3 px-4 border-b">{{ $user->email }}</td>
                     <td class="py-3 px-4 border-b">{{ $user->year }}</td>
                     <td class="py-3 px-4 border-b">{{ $user->grade_section }}</td>
