@@ -4,17 +4,17 @@
         <button class="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700">
             <a href="{{ route('admin.user') }}">Back</a>
         </button>
-        <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" @click="showModal = true">
+        <button class="mb-4 px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700" @click="showModal = true">
             Add Student
         </button>
         <div
         x-show="showModal"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
+        class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 "
         x-transition:enter="transition ease-out duration-300"
         x-transition:leave="transition ease-in duration-200"
     >
         <div
-            class="bg-white rounded-lg shadow-xl w-3/4 max-w-3xl"
+            class="bg-white rounded-lg shadow-xl w-3/4 max-w-3xl "
             @click.away="showModal = false"
         >
             <div class="flex justify-between items-center p-4 border-b">

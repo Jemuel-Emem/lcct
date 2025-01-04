@@ -56,9 +56,9 @@
         </div>
     </div>
 
-    <!-- Treatments Table -->
+
     <div class="overflow-x-auto">
-        <table class="min-w-full bg-white border border-gray-300 rounded-md shadow-md">
+        <table id="printPage"  class="min-w-full bg-white border border-gray-300 rounded-md shadow-md">
             <thead class="bg-gray-200">
                 <tr class="text-left text-sm font-medium text-gray-700">
                     <th class="py-3 px-4 border-b">Name</th>
@@ -83,5 +83,72 @@
                 @endforeach
             </tbody>
         </table>
+
+        <div class="flex justify-end mt-4">
+            <button  onclick="printOnlyTable()" class="bg-gray-500 w-64 text-white px-4 py-2 rounded-lg">Print</button>
+        </div>
     </div>
+
+    <style>
+        @media print {
+
+            body * {
+                visibility: hidden;
+            }
+
+
+            #printPage, #printPage * {
+                visibility: visible;
+            }
+
+
+            #printPage {
+                width: 100%;
+                margin: 0 auto;
+                border-collapse: collapse;
+            }
+
+
+            h2 {
+                text-align: center;
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                visibility: visible;
+            }
+
+            @page {
+                margin: 1cm;
+            }
+
+
+            body {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+    <script>
+        function printOnlyTable() {
+
+            const originalContent = document.body.innerHTML;
+
+
+            const printContent = document.getElementById('printPage').outerHTML;
+
+
+            const header = "<h2>Treatments</h2>";
+
+
+            document.body.innerHTML = header + printContent;
+
+
+            window.print();
+
+
+            window.onafterprint = () => {
+                document.body.innerHTML = originalContent;
+            };
+        }
+    </script>
 </div>

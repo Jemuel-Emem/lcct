@@ -66,6 +66,10 @@ Route::middleware([
             return view('admin.students');
         })->name('admin.student');
 
+        Route::get('/admin.history', function(){
+            return view('admin.history');
+        })->name('admin.history');
+
 
 
      });

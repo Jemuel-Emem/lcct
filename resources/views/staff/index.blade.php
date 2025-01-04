@@ -1,9 +1,9 @@
 <x-staff-layout>
 
 
-    {{-- <div class="">
+    <div class="">
         <livewire:staff.index />
-    </div> --}}
+    </div>
 
 
 </x-staff-layout>

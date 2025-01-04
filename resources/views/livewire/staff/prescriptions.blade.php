@@ -1,13 +1,13 @@
 <div>
     <div x-data="{ showModal: @entangle('editModal') }" class="flex items-start justify-end">
-        <!-- Add New Prescription Button -->
+
         <button
-            class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 w-64"
+            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 w-64"
             @click="showModal = true; @this.resetForm()">
             Add New Prescription
         </button>
 
-        <!-- Modal -->
+
         <div
             x-show="showModal"
             class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
@@ -32,7 +32,7 @@
                     </button>
                 </div>
 
-                <!-- Form -->
+
                 <form wire:submit.prevent="save">
                     <div class="p-4 space-y-4">
                         <div>
@@ -99,9 +99,9 @@
         </div>
     </div>
 
-    <!-- Table -->
+
     <div class="overflow-x-auto mt-4">
-        <table class="min-w-full bg-white border border-gray-300 rounded-lg">
+        <table id="printPage" class="min-w-full bg-white border border-gray-300 rounded-lg">
             <thead>
                 <tr class="bg-gray-200 text-gray-600 text-sm leading-normal">
                     <th class="py-3 px-6 text-left">Student Number</th>
@@ -135,5 +135,72 @@
                 @endforeach
             </tbody>
         </table>
+
+        <div class="flex justify-end mt-4">
+            <button  onclick="printOnlyTable()" class="bg-gray-500 w-64 text-white px-4 py-2 rounded-lg">Print</button>
+        </div>
     </div>
+
+    <style>
+        @media print {
+
+            body * {
+                visibility: hidden;
+            }
+
+
+            #printPage, #printPage * {
+                visibility: visible;
+            }
+
+
+            #printPage {
+                width: 100%;
+                margin: 0 auto;
+                border-collapse: collapse;
+            }
+
+
+            h2 {
+                text-align: center;
+                font-size: 20px;
+                font-weight: bold;
+                margin-bottom: 20px;
+                visibility: visible;
+            }
+
+            @page {
+                margin: 1cm;
+            }
+
+
+            body {
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+    <script>
+        function printOnlyTable() {
+
+            const originalContent = document.body.innerHTML;
+
+
+            const printContent = document.getElementById('printPage').outerHTML;
+
+
+            const header = "<h2>Prescriptions</h2>";
+
+
+            document.body.innerHTML = header + printContent;
+
+
+            window.print();
+
+
+            window.onafterprint = () => {
+                document.body.innerHTML = originalContent;
+            };
+        }
+    </script>
 </div>
