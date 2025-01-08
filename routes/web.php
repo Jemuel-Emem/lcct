@@ -135,6 +135,11 @@ Route::middleware([
         })->name('staff.attendance');
 
 
+        Route::get('/staff.exitpass', function(){
+            return view('staff.exitpass');
+        })->name('staff.exitpass');
+
+
     });
 
 

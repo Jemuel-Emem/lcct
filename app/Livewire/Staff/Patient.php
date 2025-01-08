@@ -3,7 +3,7 @@
 namespace App\Livewire\Staff;
 
 use App\Models\Patient as Patients;
-use App\Models\User as Student; // Assuming you have a Student model
+use App\Models\User as Student;
 use App\Models\treatment;
 use Carbon\Carbon;
 use Livewire\Component;
