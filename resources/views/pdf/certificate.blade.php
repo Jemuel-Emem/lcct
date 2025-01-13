@@ -113,7 +113,7 @@
             <p>
                 Age <strong>{{ $record->patient->age }}</strong>,
                 Sex <strong>{{ $record->patient->sex }}</strong>,
-                Civil Status <input type="text" placeholder="Civil Status">
+                Civil Status <strong>{{ $record->patient->civil_status }}</strong>,
             </p>
             <p>
                 Residing at <input type="text" placeholder="Address">, consulted on
