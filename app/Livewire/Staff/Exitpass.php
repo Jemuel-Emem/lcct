@@ -42,7 +42,12 @@ class Exitpass extends Component
             'Destination' => $this->destination,
             'Responsible Person' => $this->responsible_person,
             'Relationship to Student' => $this->relationship,
+            'Noted By' => 'Nurse',
+            'Approved By' => 'Student Affairs',
         ];
+
+        $qrCode = new QrCode(json_encode($qrData));
+
 
 
         $qrCode = new QrCode(json_encode($qrData));

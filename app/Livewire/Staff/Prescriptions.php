@@ -15,6 +15,7 @@ class Prescriptions extends Component
     public $diagnose;
     public $prescriptionId;
     public $editModal = false;
+    public $search = '';
 
 
     protected $rules = [
@@ -100,11 +101,31 @@ class Prescriptions extends Component
     {
         $this->reset(['studentNumber', 'gradeSection', 'treatment', 'diagnose', 'prescriptionId']);
     }
+public function ser(){
 
+$this->render();
+}
     public function render()
     {
+        $query = Prescription::with('treatment');
+
+        if (!empty($this->search)) {
+            $query->where('student_number', 'like', '%' . $this->search . '%')
+                  ->orWhereHas('treatment', function ($q) {
+                      $q->where('name', 'like', '%' . $this->search . '%');
+                  });
+        }
+
+        $prescriptions = $query->get();
+
+
+        // return view('livewire.staff.prescriptions', [
+        //     'prescriptions' => Prescription::with('treatment')->get(),
+        //     'treatments' => Treatment::all(),
+        // ]);
+
         return view('livewire.staff.prescriptions', [
-            'prescriptions' => Prescription::with('treatment')->get(),
+            'prescriptions' => $prescriptions,
             'treatments' => Treatment::all(),
         ]);
     }

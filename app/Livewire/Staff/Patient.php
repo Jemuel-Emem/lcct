@@ -10,6 +10,7 @@ use Livewire\Component;
 
 class Patient extends Component
 {
+    public $search = '';
     public $studentNumber;
     public $name;
     public $gradeSection;
@@ -128,19 +129,35 @@ class Patient extends Component
         $this->reset(['studentNumber', 'name', 'gradeSection', 'diagnose', 'treatment', 'date', 'timeIn', 'timeOut', 'patientId']);
     }
 
+public function ser(){
 
+}
 
+    // public function render()
+    // {
+    //     // Eager load the 'user' relationship with patients
+    //     $patients = Patients::with('user')->get();
+
+    //     return view('livewire.staff.patient', [
+    //         'patients' => $patients,
+    //         'treatments' => Treatment::all(), // Pass treatments to the view
+    //     ]);
+    // }
     public function render()
     {
-        // Eager load the 'user' relationship with patients
-        $patients = Patients::with('user')->get();
+        // Apply search filter
+        $patients = Patients::with('user')
+            ->where('student_number', 'like', '%' . $this->search . '%')
+            ->orWhereHas('user', function ($query) {
+                $query->where('name', 'like', '%' . $this->search . '%');
+            })
+            ->get();
 
         return view('livewire.staff.patient', [
             'patients' => $patients,
-            'treatments' => Treatment::all(), // Pass treatments to the view
+            'treatments' => Treatment::all(),
         ]);
     }
-
 
 }
 

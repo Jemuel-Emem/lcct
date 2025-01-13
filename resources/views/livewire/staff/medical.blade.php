@@ -1,11 +1,31 @@
 <div>
     <div x-data="{ showDentalModal: @entangle('editModal') }" class="flex items-start justify-end">
         <!-- Add Dental Record Button -->
-        <button
+        {{-- <button
+            class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 w-64"
+            @click="showDentalModal = true">
+            Add Dental Record
+        </button> --}}
+
+        <div class="flex gap-4 items-center">
+            <div>
+                <input
+                    type="text"
+                    wire:model.debounce.300ms="search"
+                    placeholder="Search by Student Number or Name"
+                    class="border rounded-md p-2"
+                />
+                <button wire:click="ser" class="bg-green-500 hover:bg-green-600 p-1 w-32 text-white rounded h-10">
+                    Search
+                </button>
+            </div>
+            <button
             class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 w-64"
             @click="showDentalModal = true">
             Add Dental Record
         </button>
+        </div>
+
 
         <!-- Modal -->
         <div

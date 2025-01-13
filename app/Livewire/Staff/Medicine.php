@@ -9,6 +9,7 @@ class Medicine extends Component
     public $medicineName;
     public $description;
     public $medicineId;
+    public $search = '';
     public $quantity;
     public $editModal = false;
 
@@ -62,10 +63,28 @@ class Medicine extends Component
     {
         $this->reset(['medicineName', 'description', 'quantity', 'medicineId']);
     }
+    // public function render()
+    // {
+    //     return view('livewire.staff.medicine', [
+    //         'medicines' => med::all(),
+    //     ]);
+    // }
+
+    public function ser(){
+
+    }
     public function render()
     {
+        $query = Med::query();
+
+        if (!empty($this->search)) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        }
+
         return view('livewire.staff.medicine', [
-            'medicines' => med::all(),
+            'medicines' => $query->get(),
         ]);
     }
+
+
 }

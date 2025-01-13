@@ -10,6 +10,7 @@ class Treatments extends Component
     public $description;
     public $treatmentId;
     public $editModal = false;
+    public $search = '';
 
     protected $rules = [
         'treatmentName' => 'required|string|max:255',
@@ -59,12 +60,28 @@ class Treatments extends Component
         $this->reset(['treatmentName', 'description', 'treatmentId']);
     }
 
+    // public function render()
+    // {
+    //     return view('livewire.staff.treatments', [
+    //         'treatments' => Treatment::all(),
+    //     ]);
+
+    // }
+
+    public function ser(){
+
+    }
     public function render()
     {
-        return view('livewire.staff.treatments', [
-            'treatments' => Treatment::all(),
-        ]);
+        $query = Treatment::query();
 
+        if (!empty($this->search)) {
+            $query->where('name', 'like', '%' . $this->search . '%');
+        }
+
+        return view('livewire.staff.treatments', [
+            'treatments' => $query->get(),
+        ]);
     }
 
 }

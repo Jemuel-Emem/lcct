@@ -17,6 +17,7 @@ class Medical extends Component
     public $dentalRecords;
     public $recordId;
     public $editModal = false;
+    public $search = '';
 
     protected $rules = [
         'studentNumber' => 'required|string|max:255',
@@ -35,9 +36,20 @@ class Medical extends Component
         $this->name = $student ? $student->name : '';
     }
 
+    // public function fetchRecords()
+    // {
+    //     $this->dentalRecords = MedicalRecord::all();
+    // }
+
     public function fetchRecords()
     {
-        $this->dentalRecords = MedicalRecord::all();
+        $query = MedicalRecord::query();
+
+        if (!empty($this->search)) {
+            $query->where('student_number', 'like', '%' . $this->search . '%');
+        }
+
+        $this->dentalRecords = $query->get();
     }
 
     public function saveDentalRecord()
@@ -94,6 +106,13 @@ class Medical extends Component
         $this->reset(['studentNumber', 'name', 'document', 'recordId']);
     }
 
+    public function updatedSearch()
+    {
+        $this->fetchRecords();
+    }
+public function ser(){
+
+}
     public function render()
     {
         return view('livewire.staff.medical');
