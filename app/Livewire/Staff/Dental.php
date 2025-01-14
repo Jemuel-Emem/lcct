@@ -18,6 +18,7 @@ class Dental extends Component
     public $dentalRecords;
     public $recordId;
     public $editModal = false;
+    public $search = '';
 
     protected $rules = [
         'studentNumber' => 'required|string|max:255',
@@ -38,7 +39,22 @@ class Dental extends Component
 
     public function fetchRecords()
     {
-        $this->dentalRecords = DentalRecord::all();
+        $query = DentalRecord::query();
+
+        if (!empty($this->search)) {
+            $query->where('student_number', 'like', '%' . $this->search . '%')
+                  ->orWhere('name', 'like', '%' . $this->search . '%');
+        }
+
+        $this->dentalRecords = $query->get();
+    }
+
+    public function ser(){
+
+    }
+    public function updatedSearch()
+    {
+        $this->fetchRecords();
     }
 
     public function saveDentalRecord()

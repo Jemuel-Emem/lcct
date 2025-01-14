@@ -22,7 +22,7 @@
             <button
             class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 w-64"
             @click="showDentalModal = true">
-            Add Dental Record
+            Add Medical Record
         </button>
         </div>
 

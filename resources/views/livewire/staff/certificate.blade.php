@@ -1,4 +1,15 @@
 <div>
+    <div class="mb-2">
+        <input
+            type="text"
+            wire:model.debounce.300ms="search"
+            placeholder="Search by Student Number or Name"
+            class="border rounded-md p-2"
+        />
+        <button wire:click="ser" class="bg-green-500 hover:bg-green-600 p-1 w-32 text-white rounded h-10">
+            Search
+        </button>
+    </div >
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border border-gray-300 rounded-lg">
             <thead>
