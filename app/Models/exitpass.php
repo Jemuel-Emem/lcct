@@ -18,5 +18,9 @@ class exitpass extends Model
         'exit_date',
         'exit_time'
     ];
+    public function student()
+    {
+        return $this->belongsTo(User::class, 'student_number', 'student_number');
+    }
 
 }

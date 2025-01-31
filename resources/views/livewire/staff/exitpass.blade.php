@@ -1,6 +1,6 @@
 <div>
     <div>
-        <!-- Button to Open Modal -->
+
         <div class="mb-4">
             <button wire:click="toggleModal" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
                 Create Exit Pass
@@ -24,7 +24,7 @@
                     @foreach($exitPasses as $exitPass)
                         <tr>
                             <td class="border px-4 py-2">{{ $exitPass->student_number }}</td>
-                            <td class="border px-4 py-2">{{ $exitPass->name }}</td>
+                            <td class="border px-4 py-2">{{ $exitPass->student->name ?? 'N/A' }}</td>
                             <td class="border px-4 py-2">{{ $exitPass->destination }}</td>
                             <td class="border px-4 py-2">{{ $exitPass->responsible_person }}</td>
                             <td class="border px-4 py-2">{{ $exitPass->exit_date }}</td>
